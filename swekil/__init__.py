@@ -22,6 +22,5 @@ class Window(QWebView):
 
         self.show()
 
-        window = Window()
         sys.exit(app.exec_())
         
