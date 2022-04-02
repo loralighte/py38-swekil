@@ -1,37 +1,46 @@
-## Welcome to GitHub Pages
+# Welcome to Py38-Swekil
+Py38-Swekil is the Python version of the Swekil libraries.
 
-You can use the [editor on GitHub](https://github.com/loralighte/py38-swekil/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+The project is maintained by Kai Lyons.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+## How it works
+### Opening a Window
+```py
+import swekil
+import os
+index = os.path.abspath(os.path.join(os.path.dirname(__file__), "index.html"))
+swekil.Window.openWindow(swekil.Window(), index, 600, 400, "My Window", [[]])
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+### The module system
+Modules are a method of taking a class of functions and allowing to be used with the client-side JavaScript.
+```py
+import swekil
+import os
+from PyQt5.QtCore import *
 
-### Jekyll Themes
+class MyModule(QObject):
+    def __init__(self, parent=None):
+        super(MyModile, self).__init__(parent)
+    @pyqtSlot(str)
+    def myFunction(self, name):
+        print("Hello,", name, "!")
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/loralighte/py38-swekil/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+module = MyModule()
+mymodule = ['mod', module]
 
-### Support or Contact
+index = os.path.abspath(os.path.join(os.path.dirname(__file__), "index.html"))
+swekil.Window.openWindow(swekil.Window(), index, 600, 400, "My Window", [mymodule])
+```
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+In your JavaScript file, or `<script>` tag in your index file:
+```js
+function myFunction(name){
+     mod.myFunction(name)
+}
+```
+
+And can be called from your HTML
+```html
+<button onclick="myFunction('kai');">Print my name</button>
+```
