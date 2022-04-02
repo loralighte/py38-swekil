@@ -16,6 +16,7 @@ class Window(QWebView):
 
         self.setWindowTitle(window_title)
         self.load(QtCore.QUrl.fromLocalFile(index))
+        self.setFixedSize(window_width, window_height)
 
         if modules:
             for module in modules:
