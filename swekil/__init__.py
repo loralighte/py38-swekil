@@ -9,6 +9,7 @@ app = QApplication(sys.argv)
 class Window(QWebView):
     def __init__(self):
         super().__init__()
+        
     def openWindow(self, index, window_width, window_height, window_title, modules):
         frame = self.page().mainFrame()
 
@@ -21,6 +22,5 @@ class Window(QWebView):
                 frame.addToJavaScriptWindowObject(module[0], module[1])
 
         self.show()
-
         sys.exit(app.exec_())
         
